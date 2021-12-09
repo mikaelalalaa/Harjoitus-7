@@ -4,4 +4,26 @@ Käytössä on kaksi virtuaali konetta Ubuntu 20.4 LTS käyttöjärjestelmällä
 
 ## SSH asennus
    
-Jotta saisin puttyyn yhetden asensin ensimmäisenä `openssh-server`. Tein `init.sls` tiedoston ja ajoin tämän komennolla 
+Jotta saisin putty ohjelmaa yhteyden asensin ensimmäisenä `openssh-server`. Tein hakemistoon srv/salt/sshd `init.sls` tiedoston ja ajoin komennolla 
+
+
+```
+openssh-server:
+  pkg.installed
+
+/etc/ssh/sshd_config:
+  file.managed:
+    - source: salt://sshd/sshd_config
+
+banner:
+  file.managed:
+    - source: salt://sshd/banner.txt
+    - name: /etc/ssh/banner.txt
+
+sshd:
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/ssh/sshd_config
+
+```
