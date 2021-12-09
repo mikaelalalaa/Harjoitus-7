@@ -1,3 +1,23 @@
+all the apps:
+  pkg.installed:
+    - pkgs:
+      - apache2
+      - tree
+      - net-tools
+      - mariadb-server
+      - mariadb-client
+      - php
+      - php-mysql
+      - php-bcmath
+      - php-curl
+      - php-imagick
+      - php-intl
+      - php-json
+      - php-mbstring
+      - php-xml
+      - php-zip
+
+
 openssh-server:
   pkg.installed
 
