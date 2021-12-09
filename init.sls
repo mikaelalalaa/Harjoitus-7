@@ -17,7 +17,6 @@ all the apps:
       - php-xml
       - php-zip
 
-
 openssh-server:
   pkg.installed
 
