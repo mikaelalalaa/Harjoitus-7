@@ -80,12 +80,21 @@ Asennus oli onnistunut. Paketit jotka olivat uusia asentui ilman ongelmia ja jot
 Tietokanna luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden teitokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet vasta luotuun tietokantaan komennot oli:
 
 ```
-
+CREATE USER 'wpusr'@'localhost' IDENTIFIED BY 'password';
+&
+GRANT ALL ON wordpress.* TO 'wpusr'@'localhost' IDENTIFIED BY 'password';
+&
+FLUSH PRIVILEGES;
 ```
 
+Vielä visuaalisestin miltä tietokanna luominen näyttää 
+
+![image](https://user-images.githubusercontent.com/93308960/145247868-8bec645b-b06c-41c8-b1ef-a2687947a827.png)
 
 # Apache2 ja Wordpress 
 
+
+![image](https://user-images.githubusercontent.com/93308960/145261819-2e359cd5-2bb2-4592-bcf3-165ad2b5474b.png)
 
 
 ```
