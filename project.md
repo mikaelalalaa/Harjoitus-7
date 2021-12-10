@@ -37,7 +37,7 @@ Kuten kuvasta näkyy muutokset tuli onnistuneestin käyttöön.
 
 ![image](https://user-images.githubusercontent.com/93308960/145212674-1f983697-2db4-4b22-9fa4-d265d44061ff.png)
 
-Toisesta kuvasta vielä näkyy että yhdistäminen putty ohjelmaan onnistui ja samalla myös banner teksti näkyy.
+Tässä vielä näkyy että yhdistäminen putty ohjelmaan onnistui ja banner teksti näkyy.
 
 ![image](https://user-images.githubusercontent.com/93308960/145214879-5a5f61f3-aef4-417e-8e73-63c69de144d3.png)
 
