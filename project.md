@@ -27,7 +27,7 @@ sshd:
 
 ``` 
 
-Muutoksien jälkeen otin ne käyttöön komennolla 
+Muokkauksien jälkeen otin ne käyttöön komennolla 
 
 ```
 sudo salt '*' state.apply sshd
