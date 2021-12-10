@@ -33,11 +33,11 @@ Muutoksien jälkeen otin ne käyttöön komennolla
 sudo salt '*' state.apply sshd
 ```
 
-Kuten kuvasta näkyy muutokset tuli onnistuneestin käyttöön
+Kuten kuvasta näkyy muutokset tuli onnistuneestin käyttöön. 
 
 ![image](https://user-images.githubusercontent.com/93308960/145212674-1f983697-2db4-4b22-9fa4-d265d44061ff.png)
 
-Toisesta kuvasta vielä näkyy että yhdistäminen putty ohjelmaan onnistui ja samalla myös banner teksti näkyy. 
+Toisesta kuvasta vielä näkyy että yhdistäminen putty ohjelmaan onnistui ja samalla myös banner teksti näkyy.
 
 ![image](https://user-images.githubusercontent.com/93308960/145214879-5a5f61f3-aef4-417e-8e73-63c69de144d3.png)
 
@@ -75,14 +75,14 @@ Asennus oli onnistunut. Paketit jotka olivat uusia asentui ilman ongelmia ja jot
 
 ![image](https://user-images.githubusercontent.com/93308960/145233892-e9a7e336-c999-49ca-961e-a28c5b334c6a.png)
 
-## Tietokannan luominen
+## Tietokannan ja käyttäjän luominen
 
 Tietokanna luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden teitokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet vasta luotuun tietokantaan komennot oli:
 
 ```
 CREATE USER 'wpusr'@'localhost' IDENTIFIED BY 'password';
 &
-GRANT ALL ON wordpress.* TO 'wpusr'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON wordpress.* TO 'wpusr'@'localhost' IDENTIFIED BY 'passwd';
 &
 FLUSH PRIVILEGES;
 ```
@@ -91,31 +91,9 @@ Vielä visuaalisestin miltä tietokanna luominen näyttää
 
 ![image](https://user-images.githubusercontent.com/93308960/145247868-8bec645b-b06c-41c8-b1ef-a2687947a827.png)
 
-# Apache2 ja Wordpress 
+#  Wordpress ja Apache2 
 
-
-![image](https://user-images.githubusercontent.com/93308960/145261819-2e359cd5-2bb2-4592-bcf3-165ad2b5474b.png)
-
-
-```
-
-apache2:
-  pkg.installed
-
-/etc/apache2/sites-available/000-default.conf:
-  file.managed:
-    - source: salt://apache2/000-default.conf
-
-restart:
-  service.running:
-    - name: apache2
-    - watch:
-      - /etc/apache2/sites-available/000-default.conf
-
-```
-
-
-
+Loin uuden init.sls tiedoston wordpressiä varten, jossa ladataan/puretaan wordpress tiedosto ja annetaan oikeudet tiedostoille.
 
 ```
 get_wordpress:
@@ -142,3 +120,53 @@ get_wordpress:
       - group
       - mode
 ```
+
+Ajoin komennon 
+```
+sudo salt '*' state.apply wordpress 
+```
+joka ensimmäinen tulos ei onnistunut, koska tiedostossa oli kirjoitus virhe. Korjasin virheen ja halutut muutokset otettiin onnistuneesti käyttöön  
+
+![image](https://user-images.githubusercontent.com/93308960/145493499-0514f5f7-98dc-4fb0-a2ff-2841f6d5c8a2.png)
+
+Kopioitiin wp-config.php tiedosto /srv/salt/wordpress hakemistoon, muokattiin tiedostoa lisäämällä aijemin luotu tietokannan tiedot:
+
+```
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'wordpredd' );
+/** MySQL database username */
+define( 'DB_USER', 'wpudr' );
+/** MySQL database password */
+define( 'DB_PASSWORD', 'passwd' );
+/** MySQL hostname */
+define( 'DB_HOST', 'localhost' );
+```
+
+Koska haluttiin että muutokset tulevat voimaan aijettiin komento `sudo salt '*' state.apply wordpress` uudestaan. Muutokset otettiin onnistuneestin käyttöön.
+
+![image](https://user-images.githubusercontent.com/93308960/145494320-10947db0-e67a-4ec8-a0b2-a63c46275df9.png)
+
+
+
+
+```
+
+apache2:
+  pkg.installed
+
+/etc/apache2/sites-available/000-default.conf:
+  file.managed:
+    - source: salt://apache2/000-default.conf
+
+restart:
+  service.running:
+    - name: apache2
+    - watch:
+      - /etc/apache2/sites-available/000-default.conf
+
+```
+
+
+
+
