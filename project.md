@@ -189,3 +189,24 @@ Kaikki muutokset tulivat onnistuneesti voimaan, koska kun laitettiin ip-osoite s
 Projektii oli kiva tehdä vaikka pieniä mutkia tuli matkaan, se myös onnistui odotetusti. Sain hyvin tukea opettajamme sivuilta ja kurssilla tehtyistä tehtävistä. Sivun lopputulos oli tämän näköinen 
 
 ![image](https://user-images.githubusercontent.com/93308960/145278134-49d4e039-bf34-4a97-a07f-bd4fffa875d5.png)
+
+
+---
+
+# Lähteet 
+
+Journaldev, install wordpress on ubuntu 
+
+https://www.journaldev.com/24954/install-wordpress-on-ubuntu
+
+Ubuntu, install and configure WordPress
+
+https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview
+
+Community, How To Install WordPress on Ubuntu 20.04 with a LAMP Stack
+
+https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-20-04-with-a-lamp-stack
+
+Github
+
+https://gist.github.com/hbokh/944987bb7f34dc38767830b882364e3e
