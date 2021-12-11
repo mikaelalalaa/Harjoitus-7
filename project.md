@@ -77,7 +77,7 @@ Asennus oli onnistunut. Paketit jotka olivat uusia asentui ilman ongelmia ja jot
 
 ## Tietokannan ja käyttäjän luominen
 
-Tietokanna luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden teitokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet vasta luotuun tietokantaan komennot oli:
+Tietokanna luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden teitokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet, vasta luotuun tietokantaan. Komentoina toimi:
 
 ```
 CREATE USER 'wpusr'@'localhost' IDENTIFIED BY 'password';
@@ -93,7 +93,8 @@ Vielä visuaalisestin miltä tietokanna luominen näyttää
 
 ## Wordpress ja Apache2 
 
-Loin uuden init.sls tiedoston wordpressiä varten, jossa ladataan/puretaan wordpress tiedosto ja annetaan oikeudet tiedostoille.
+Loin uuden init.sls tiedoston wordpressiä varten, jossa ladataan ja puretaan wordpress tiedosto ja annetaan oikeudet tiedostoille.
+*Wordpress tulee automaattisestin pakattuna tiedostona ja se pitää purkaa enne käyttöä*
 
 ```
 get_wordpress:
@@ -125,7 +126,7 @@ Ajoin komennon
 ```
 sudo salt '*' state.apply wordpress 
 ```
-joka ensimmäinen tulos ei onnistunut, koska tiedostossa oli kirjoitus virhe. Korjasin virheen ja halutut muutokset otettiin onnistuneesti käyttöön  
+Ensimmäinen kerta ei onnistunut, koska tiedostossa oli kirjoitus virhe. Korjasin virheen ja halutut muutokset otettiin onnistuneesti käyttöön  
 
 ![image](https://user-images.githubusercontent.com/93308960/145493499-0514f5f7-98dc-4fb0-a2ff-2841f6d5c8a2.png)
 
@@ -147,7 +148,7 @@ Koska haluttiin että muutokset tulevat voimaan aijettiin komento `sudo salt '*'
 
 ![image](https://user-images.githubusercontent.com/93308960/145494320-10947db0-e67a-4ec8-a0b2-a63c46275df9.png)
 
-Ennen kuin tehään mitään muutoksia apacheen niin katsotaan onko sovellus käynnissä ja saadaanko aloitus sivu näkymään selaimeen. Apachen tila saatiin katsottua komennolla `sudo systemctl status apache2` ja sivu katsottinn laittamalla ip-osoite selaimeen. Kuvasta näkyy molemmat onnistui.
+Ennen kuin tehtiin mitään muutoksia apacheen niin katsottiin onko sovellus käynnissä ja saadaanko aloitus sivu näkymään selaimeen. Apachen tila saatiin katsottua komennolla `sudo systemctl status apache2` ja sivu katsottinn laittamalla ip-osoite selaimeen. Kuvasta näkyy molemmat onnistui.
 
 ![image](https://user-images.githubusercontent.com/93308960/145219802-50050723-c2e4-485c-80e0-df7adbc3bab1.png)
 
