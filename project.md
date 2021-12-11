@@ -77,6 +77,7 @@ Asennus oli onnistunut. Paketit jotka olivat uusia asentui ilman ongelmia ja jot
 
 ## Tietokannan ja käyttäjän luominen
 
+Ainoa mitä en saaut automatisoitua oli tietokanna luominen ja siihe käyttäjä joten se tehtiin käsin.
 Tietokanna luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden teitokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet, vasta luotuun tietokantaan. Komentoina toimi:
 
 ```
