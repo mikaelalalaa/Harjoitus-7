@@ -91,7 +91,7 @@ Vielä visuaalisestin miltä tietokanna luominen näyttää
 
 ![image](https://user-images.githubusercontent.com/93308960/145247868-8bec645b-b06c-41c8-b1ef-a2687947a827.png)
 
-#  Wordpress ja Apache2 
+## Wordpress ja Apache2 
 
 Loin uuden init.sls tiedoston wordpressiä varten, jossa ladataan/puretaan wordpress tiedosto ja annetaan oikeudet tiedostoille.
 
@@ -184,5 +184,6 @@ Kaikki muutokset tulivat onnistuneesti voimaan, koska kun laitettiin ip-osoite s
 
 ![image](https://user-images.githubusercontent.com/93308960/145271562-872ab483-725a-4ad4-b184-e60bc8c822b2.png)
 
-# Lopputulos 
+# Lopputunnelmat
+
 
