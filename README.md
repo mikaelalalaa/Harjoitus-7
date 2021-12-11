@@ -4,5 +4,5 @@ Tämä on git-repo [**Tero Karvisen Palvelinten hallinta - ICT4TN022-3014 - 2021
 
 Aiheena on pystyttää portfolio nettisivu valokuvauksilleni. Se toteutetaan asentamalla apache2, mysql tietokanta ja niitten avulla sitten pystyttää itse wordpress sivu, sivuna asennetaan myös muita tarpeellisia ohjelmia. 
 
-*Lisenssi: GPL-3.0 License*
+**Lisenssi: GPL-3.0 License**
 
