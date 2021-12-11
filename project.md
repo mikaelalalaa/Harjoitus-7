@@ -210,3 +210,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubu
 Github
 
 https://gist.github.com/hbokh/944987bb7f34dc38767830b882364e3e
+
+Tero Karvinen
+
+https://terokarvinen.com/
