@@ -41,7 +41,7 @@ Tässä vielä näkyy että yhdistäminen putty ohjelmaan onnistui ja banner tek
 
 ![image](https://user-images.githubusercontent.com/93308960/145214879-5a5f61f3-aef4-417e-8e73-63c69de144d3.png)
 
-SSH asennuksien jälkeen tein uuden salt moduulin josta pystyisin yhdellä kertaa asentamaan kaikki mahdolliset sovellukset joita tulisin käyttämään projektin aikana.
+SSH asennuksien jälkeen tein uuden salt moduulin jotta pystyisin yhdellä kertaa asentamaan kaikki mahdolliset sovellukset joita tulisin käyttämään projektin aikana.
 
 ```
 all the apps:
@@ -129,7 +129,7 @@ joka ensimmäinen tulos ei onnistunut, koska tiedostossa oli kirjoitus virhe. Ko
 
 ![image](https://user-images.githubusercontent.com/93308960/145493499-0514f5f7-98dc-4fb0-a2ff-2841f6d5c8a2.png)
 
-Kopioitiin wp-config.php tiedosto /srv/salt/wordpress hakemistoon, muokattiin tiedostoa lisäämällä aijemin luotu tietokannan tiedot:
+Kopioitiin wp-config.php tiedosto /srv/salt/wordpress hakemistoon, ja muokattiin tiedostoa lisäämällä aijemin luotu tietokannan tiedot:
 
 ```
 // ** MySQL settings - You can get this info from your web host ** //
@@ -147,8 +147,12 @@ Koska haluttiin että muutokset tulevat voimaan aijettiin komento `sudo salt '*'
 
 ![image](https://user-images.githubusercontent.com/93308960/145494320-10947db0-e67a-4ec8-a0b2-a63c46275df9.png)
 
+Ennen mitää
+Sitten alettiin konfiguroimaan apache2 jotta saataisiin wordpress pystyyn. Aloitettiin kopioimalla 000-default.conf tiedosto /srv/salt/apache2 hakemistoon ja luomalla init.sls tiedosto. Muokattiin conf tiedostoa ja vaihdettiin DocumentRoot ja ServerAdmin sopimaan wordpressin tietoja. Eli vaihdettiin apachen oma oletus sivu hakemisto wordpressin hakemistoon eli `DocumentRoot /var/www/html --> DocumentRoot /var/www/wordpress` ja vaihdettiin apache ServerAdmin wordpressin eli ` ServerAdmin webmaster@localhost -->  ServerAdmin wpusr@localhost`.
 
+conf tiedoston jälkeen muokattiin init.sls tiedostoa, jotta saadaan varmistettua apache2 on asentunut, conf tiedoston muutokset tulee voimaan ja myös että se on käynnissä.
 
+Joten tiedoston sisältö näytti tältä:
 
 ```
 
@@ -167,6 +171,11 @@ restart:
 
 ```
 
+Ajettiin se komennolla 
+
+```
+sudo salt '*' state.apply apache2
+```
 
 
 
