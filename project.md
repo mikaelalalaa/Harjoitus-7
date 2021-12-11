@@ -186,4 +186,4 @@ Kaikki muutokset tulivat onnistuneesti voimaan, koska kun laitettiin ip-osoite s
 
 # Lopputunnelmat
 
-
+Projektii oli kiva tehdä vaikka pieniä mutkia tuli matkaan, se myös onnistui odotetusti. Sain hyvin tukea opettajamme sivuilta ja kurssilla tehtyistä tehtävistä. Sivun lopputulos oli tämän näköinen 
