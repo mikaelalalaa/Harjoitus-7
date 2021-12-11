@@ -147,7 +147,10 @@ Koska haluttiin että muutokset tulevat voimaan aijettiin komento `sudo salt '*'
 
 ![image](https://user-images.githubusercontent.com/93308960/145494320-10947db0-e67a-4ec8-a0b2-a63c46275df9.png)
 
-Ennen mitää
+Ennen kuin tehään mitään muutoksia apacheen niin katsotaan onko sovellus käynnissä ja saadaanko aloitus sivu näkymään selaimeen. Apachen tila saatiin katsottua komennolla `sudo systemctl status apache2` ja sivu katsottinn laittamalla ip-osoite selaimeen. Kuvasta näkyy molemmat onnistui.
+
+![image](https://user-images.githubusercontent.com/93308960/145219802-50050723-c2e4-485c-80e0-df7adbc3bab1.png)
+
 Sitten alettiin konfiguroimaan apache2 jotta saataisiin wordpress pystyyn. Aloitettiin kopioimalla 000-default.conf tiedosto /srv/salt/apache2 hakemistoon ja luomalla init.sls tiedosto. Muokattiin conf tiedostoa ja vaihdettiin DocumentRoot ja ServerAdmin sopimaan wordpressin tietoja. Eli vaihdettiin apachen oma oletus sivu hakemisto wordpressin hakemistoon eli `DocumentRoot /var/www/html --> DocumentRoot /var/www/wordpress` ja vaihdettiin apache ServerAdmin wordpressin eli ` ServerAdmin webmaster@localhost -->  ServerAdmin wpusr@localhost`.
 
 conf tiedoston jälkeen muokattiin init.sls tiedostoa, jotta saadaan varmistettua apache2 on asentunut, conf tiedoston muutokset tulee voimaan ja myös että se on käynnissä.
@@ -177,5 +180,9 @@ Ajettiin se komennolla
 sudo salt '*' state.apply apache2
 ```
 
+Kaikki muutokset tulivat onnistuneesti voimaan, koska kun laitettiin ip-osoite selaimeen tuli wordpressin aloitus sivu näkyviin. Sitten alettiin luomaan käyttäjää ja muokkaamaan sivua haluamisen mukaan. 
 
+![image](https://user-images.githubusercontent.com/93308960/145271562-872ab483-725a-4ad4-b184-e60bc8c822b2.png)
+
+# Lopputulos 
 
