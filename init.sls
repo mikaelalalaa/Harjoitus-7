@@ -50,6 +50,8 @@ restart:
       - /etc/apache2/sites-available/000-default.conf
 
 
+##wp install source https://gist.github.com/hbokh/944987bb7f34dc38767830b882364e3e
+
 get_wordpress:
   cmd.run:
     - name: 'wget -q -O - http://wordpress.org/latest.tar.gz | tar zxf - '
