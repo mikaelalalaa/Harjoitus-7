@@ -127,7 +127,7 @@ Ajoin komennon
 ```
 sudo salt '*' state.apply wordpress 
 ```
-Ensimmäinen kerta ei onnistunut, koska tiedostossa oli kirjoitus virhe. Korjasin virheen ja halutut muutokset otettiin onnistuneesti käyttöön  
+Ensimmäinen kerta ei onnistunut, koska tiedostossa oli kirjoitus virhe. Korjasin virheen ja ajoin pari kertaa komennon jotta tulos olisi idempotentti, joka onnistui. 
 
 ![image](https://user-images.githubusercontent.com/93308960/145493499-0514f5f7-98dc-4fb0-a2ff-2841f6d5c8a2.png)
 
