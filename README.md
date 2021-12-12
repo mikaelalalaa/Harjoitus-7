@@ -8,7 +8,7 @@ Apu työkaluna tässä on käytetty saltstack ohjelmaa.
 
 Lopputulos 
 
-![image](https://user-images.githubusercontent.com/93308960/145732922-23b43073-4744-4d41-b8fe-952668c4b364.png)
+![image](https://user-images.githubusercontent.com/93308960/145732936-22de5166-944b-4a5a-9c2c-8637cbbe6b25.png)
 
 **Lisenssi: GPL-3.0 License**
 
