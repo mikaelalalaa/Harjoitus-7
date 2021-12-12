@@ -1,6 +1,17 @@
 # Alku
 
-Loin kaksi virtuaali konetta asensin toiseen master ja toiseen minion, käyttöjärjestelmänä toimi Ubunut server 20.4 LTS. 
+Loin kaksi virtuaali konetta asensin toiseen master ja toiseen minion, käyttöjärjestelmänä toimi Ubunut server 20.4 LTS. Johon olin asentanut salt minion ja master komennoilla 
+
+```
+sudo apt-get install salt-master
+&
+sudo apt-get install salt-minion
+```
+
+Asennuksien jälkeen muokkasin `etc/salt/minion` tiedostoa lisäämällä master koneen ip-osoitteen *(192.168..)* ja minion koneen nimen *(id: mini)*, sitten uudelleen käynnistin minion koneen komennolla `sudo systemctl restart salt-minion`. Minion lähettää avaimen masteri koneelle, tämän avaimen hyväksyin komennolla `sudo salt-key -A`. Testasin yhteyttä komennolla `sudo salt '*' test.ping`. Tuloksena tuli 'true' kommunikaatio onnistuu.
+
+![image](https://user-images.githubusercontent.com/93308960/145733598-8a6ca319-f2bf-4ba4-bf84-d6e72accfbb8.png)
+
 
 Tämän jälkeen halusin ottaa putty ohjelmaa yhetyden joten piti asentaa `openssh-server`, halusin myös samalla konfiguroida eri portin ja banner teksin. Aluksi asensin ssh komennolla `sudo apt-get install openssh-server`, sitten loin banner.txt tiedoston `/etc/ssh` hakemistoon, kopioin banner ja sshd_config tiedostot srv/salt/sshd hakemistoon.
 
