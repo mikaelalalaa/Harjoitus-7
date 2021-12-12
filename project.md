@@ -1,6 +1,8 @@
 # Alku
 
-Loin kaksi virtuaali konetta asensin toiseen master ja toiseen minion, käyttöjärjestelmänä toimi Ubunut server 20.4 LTS. Johon olin asentanut salt minion ja master komennoilla 
+Loin kaksi virtuaali konetta asensin toiseen salt master ja toiseen minion ohjelmat, käyttöjärjestelmänä toimi Ubuntu server 20.4 LTS. 
+
+ Salt minion ja master asennus tapahtui komennoilla 
 
 ```
 sudo apt-get install salt-master
