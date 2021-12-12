@@ -131,7 +131,11 @@ Ensimmäinen kerta ei onnistunut, koska tiedostossa oli kirjoitus virhe. Korjasi
 
 ![image](https://user-images.githubusercontent.com/93308960/145493499-0514f5f7-98dc-4fb0-a2ff-2841f6d5c8a2.png)
 
-Kopioitiin wp-config.php tiedosto /srv/salt/wordpress hakemistoon, ja muokattiin tiedostoa lisäämällä aijemin luotu tietokannan tiedot:
+Kopioitiin wp-config.php tiedosto /srv/salt/wordpress hakemistoon, katsottiin että kopioitu tiedosto oli mennyt haluttuun hakemistoon komennolla `tree`
+
+![image](https://user-images.githubusercontent.com/93308960/145733210-3c4385d5-9412-464e-984d-ea505c6e0882.png)
+
+Sen jälkee muokattiin config tiedostoa lisäämällä aijemin luotu tietokannan tiedot:
 
 ```
 // ** MySQL settings - You can get this info from your web host ** //
