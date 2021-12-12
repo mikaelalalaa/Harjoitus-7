@@ -15,9 +15,9 @@ Asennuksien jälkeen muokkasin `etc/salt/minion` tiedostoa lisäämällä master
 ![image](https://user-images.githubusercontent.com/93308960/145733598-8a6ca319-f2bf-4ba4-bf84-d6e72accfbb8.png)
 
 
-Tämän jälkeen halusin ottaa putty ohjelmaa yhetyden joten piti asentaa `openssh-server`, halusin myös samalla konfiguroida eri portin ja banner teksin. Aluksi asensin ssh komennolla `sudo apt-get install openssh-server`, sitten loin banner.txt tiedoston `/etc/ssh` hakemistoon, kopioin banner ja sshd_config tiedostot srv/salt/sshd hakemistoon.
+Tämän jälkeen halusin ottaa putty ohjelmalla yhteyden joten piti asentaa `openssh-server`, halusin myös samalla konfiguroida eri portin ja banner tekstin. Aluksi asensin ssh komennolla `sudo apt-get install openssh-server`, sitten loin banner.txt tiedoston `/etc/ssh` hakemistoon, kopioin banner ja sshd_config tiedostot srv/salt/sshd hakemistoon.
 
-Loin *init.sls* tiedoston srv/salt/sshd hakemistoon jonne kirjoitin haluttavat salt formulat. Muokkasin sshd_config tiedostoa ja lisäsin sinne kohdan `Port 2222`, kun ottaa yhetyttä nii ssh käyttää porttia 2222
+Loin *init.sls* tiedoston srv/salt/sshd hakemistoon jonne kirjoitin haluttavat salt formulat. Muokkasin sshd_config tiedostoa ja lisäsin sinne kohdan `Port 2222`, kun ottaa yhetyttä niin ssh käyttää porttia 2222
 
 ```
 openssh-server:
@@ -46,7 +46,7 @@ Muokkauksien jälkeen otin ne käyttöön komennolla
 sudo salt '*' state.apply sshd
 ```
 
-Kuten kuvasta näkyy muutokset tuli onnistuneestin käyttöön. 
+Kuten kuvasta näkyy muutokset tulivat onnistuneesti käyttöön. 
 
 ![image](https://user-images.githubusercontent.com/93308960/145212674-1f983697-2db4-4b22-9fa4-d265d44061ff.png)
 
@@ -90,8 +90,8 @@ Asennus oli onnistunut. Paketit jotka olivat uusia asentui ilman ongelmia ja jot
 
 ## Tietokannan ja käyttäjän luominen
 
-Ainoa mitä en saaut automatisoitua oli tietokanna luominen ja siihe käyttäjä joten se tehtiin käsin.
-Tietokanna luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden teitokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet, vasta luotuun tietokantaan. Komentoina toimi:
+Ainoa mitä en saaut automatisoitua oli tietokannan luominen ja siihen käyttäjää, joten tein sen käsin.
+Tietokannan luomisen aloitin kirjautumalla mysql, komennolla `mysql -u root -p` *(eli pääkäyttäjällä)*. Loin uuden tietokannan komennolla `CREATE DATABASE wordpress`, jonka jälkeen loin sitä varten käyttäjän `wpusr` jolle annoin kaikki oikeudet, vasta luotuun tietokantaan. Komentoina toimi:
 
 ```
 CREATE USER 'wpusr'@'localhost' IDENTIFIED BY 'password';
@@ -108,7 +108,7 @@ Vielä visuaalisestin miltä tietokanna luominen näyttää
 ## Wordpress ja Apache2 
 
 Loin uuden init.sls tiedoston wordpressiä varten, jossa ladataan ja puretaan wordpress tiedosto ja annetaan oikeudet tiedostoille.
-*Wordpress tulee automaattisestin pakattuna tiedostona ja se pitää purkaa enne käyttöä*
+*Wordpress tulee automaattisesti pakattuna tiedostona ja se pitää purkaa ennen käyttöä*
 
 ```
 get_wordpress:
@@ -153,16 +153,16 @@ Sen jälkee muokattiin config tiedostoa lisäämällä aijemin luotu tietokannan
 ```
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpredd' );
+define( 'DB_NAME', 'wordpress' );
 /** MySQL database username */
-define( 'DB_USER', 'wpudr' );
+define( 'DB_USER', 'wpusr' );
 /** MySQL database password */
 define( 'DB_PASSWORD', 'passwd' );
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
 ```
 
-Koska haluttiin että muutokset tulevat voimaan aijettiin komento `sudo salt '*' state.apply wordpress` uudestaan. Muutokset otettiin onnistuneestin käyttöön.
+Koska haluttiin että muutokset tulevat voimaan ajettiin komento `sudo salt '*' state.apply wordpress` uudestaan. Muutokset otettiin onnistuneesti käyttöön.
 
 ![image](https://user-images.githubusercontent.com/93308960/145494320-10947db0-e67a-4ec8-a0b2-a63c46275df9.png)
 
@@ -172,7 +172,7 @@ Ennen kuin tehtiin mitään muutoksia apacheen niin katsottiin onko sovellus kä
 
 Sitten alettiin konfiguroimaan apache2 jotta saataisiin wordpress pystyyn. Aloitettiin kopioimalla 000-default.conf tiedosto /srv/salt/apache2 hakemistoon ja luomalla init.sls tiedosto. Muokattiin conf tiedostoa ja vaihdettiin DocumentRoot ja ServerAdmin sopimaan wordpressin tietoja. Eli vaihdettiin apachen oma oletus sivu hakemisto wordpressin hakemistoon eli `DocumentRoot /var/www/html --> DocumentRoot /var/www/wordpress` ja vaihdettiin apache ServerAdmin wordpressin eli ` ServerAdmin webmaster@localhost -->  ServerAdmin wpusr@localhost`.
 
-conf tiedoston jälkeen muokattiin init.sls tiedostoa, jotta saadaan varmistettua apache2 on asentunut, conf tiedoston muutokset tulee voimaan ja myös että se on käynnissä.
+conf tiedoston jälkeen muokattiin init.sls tiedostoa, jotta saadaan varmistettua että apache2 on asentunut, sekä conf tiedoston muutokset ovat tulleet voimaan ja myös että apache on käynnissä.
 
 Joten tiedoston sisältö näytti tältä:
 
@@ -199,13 +199,13 @@ Ajettiin se komennolla
 sudo salt '*' state.apply apache2
 ```
 
-Kaikki muutokset tulivat onnistuneesti voimaan, koska kun laitettiin ip-osoite selaimeen tuli wordpressin aloitus sivu näkyviin. Sitten alettiin luomaan käyttäjää ja muokkaamaan sivua haluamisen mukaan. 
+Kaikki muutokset tulivat onnistuneesti voimaan koska wordpressin asennus sivu tuli näkyviin selaimeen. Sitten alettiin luomaan käyttäjää ja muokkaamaan sivua oman maun mukaan. 
 
 ![image](https://user-images.githubusercontent.com/93308960/145271562-872ab483-725a-4ad4-b184-e60bc8c822b2.png)
 
 # Lopputunnelmat
 
-Projektii oli kiva tehdä vaikka pieniä mutkia tuli matkaan, se myös onnistui odotetusti. Sain hyvin tukea opettajamme sivuilta ja kurssilla tehtyistä tehtävistä. Sivun lopputulos oli tämän näköinen 
+Projektia oli kiva tehdä vaikka pieniä mutkia tuli matkaan, se myös onnistui odotetusti. Sain hyvin tukea opettajamme sivuilta ja kurssilla tehdyistä tehtävistä. Sivun lopputulos oli tämän näköinen. 
 
 ![image](https://user-images.githubusercontent.com/93308960/145278134-49d4e039-bf34-4a97-a07f-bd4fffa875d5.png)
 
