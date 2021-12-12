@@ -1,6 +1,6 @@
 # Alku
 
-Loin virtuaali asensin salt master ja minion ohjelman, käyttöjärjestelmänä toimi Ubuntu server 20.4 LTS. 
+Loin virtuaali koneen, asensin salt master ja minion ohjelman, käyttöjärjestelmänä toimi Ubuntu server 20.4 LTS. 
 
  Salt minion ja master asennus tapahtui komennoilla 
 
